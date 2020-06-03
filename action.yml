@@ -1,0 +1,21 @@
+---
+name: Molecoule for ansible
+description: Just run molecule for test ansible role
+author: Nikita Galkin
+
+branding:
+  icon: upload
+  color: green
+
+inputs:
+
+  command:
+    description: Command to pass to molecule ( e.g test, converge, prepare )
+    required: true
+    default: 'test'
+
+runs:
+  using: docker
+  image: docker://nobodyone/molecule-action:3.0.4
+  env:
+    command: ${{ inputs.command }}
