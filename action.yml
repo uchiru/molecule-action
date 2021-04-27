@@ -16,6 +16,6 @@ inputs:
 
 runs:
   using: docker
-  image: docker://uchiru/molecule-action:dev-INFRA-1534-molecule-vm-driver-984f46f4
+  image: docker://uchiru/molecule-action:dev-INFRA-1534-molecule-vm-driver-6ddf5efd
   env:
     command: ${{ inputs.command }}
