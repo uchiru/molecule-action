@@ -1,0 +1,14 @@
+#!/bin/bash
+set -ex
+
+IMAGE=uchiru/molecule-action:$1
+
+rm -fr .build
+git clone git@github.com:uchiru/molecule-action .build
+pushd .build
+git checkout $1
+docker build --build-arg version=$1 -t $IMAGE .
+docker push $IMAGE
+popd
+rm -fr .build
+echo "DONE :)"
