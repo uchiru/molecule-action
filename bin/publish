@@ -1,0 +1,8 @@
+#!/bin/bash
+set -ex
+
+IMAGE=uchiru/molecule-action:$1
+
+docker build --build-arg version=$1 -t $IMAGE .
+docker push $IMAGE
+echo "DONE :)"
