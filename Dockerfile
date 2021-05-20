@@ -1,11 +1,10 @@
 FROM python:3.8-slim-buster
 
 ENV PY_COLORS=1 \
-    ANSIBLE_FORCE_COLOR=1 \
-    ANSIBLE_ROLES_PATH=/tmp:/github/workspace/uchiru
+    ANSIBLE_FORCE_COLOR=1
 
 RUN apt-get update \
-    && apt-get install -y build-essential openssh-client \
+    && apt-get install -y build-essential openssh-client git \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
