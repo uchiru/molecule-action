@@ -16,6 +16,6 @@ inputs:
 
 runs:
   using: docker
-  image: docker://uchiru/molecule-action:3.3.1
+  image: docker://uchiru/molecule-action:dev-INFRA-1825-ubuntu20-docker-package
   env:
     command: ${{ inputs.command }}
