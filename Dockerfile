@@ -9,12 +9,10 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python -m pip install --upgrade pip
-RUN pip install --upgrade --user setuptools
-RUN pip install Jinja2
+RUN pip install --upgrade pip setuptools
 
 COPY requirements.txt /tmp/
 
 RUN pip install -r /tmp/requirements.txt
 
-CMD cd /tmp/$(basename "$PWD"); molecule ${command:-test}
+CMD cd ${GITHUB_REPOSITORY:-/tmp/$(basename "$PWD")}; molecule ${command:-test}
