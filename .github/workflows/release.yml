@@ -1,0 +1,23 @@
+name: Release
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [master, main]
+    paths-ignore: ['*.md', '.**']
+
+jobs:
+  bump:
+    uses: uchiru/platform-gha-workflows/.github/workflows/bump.yml@master
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  build-push:
+    needs: bump
+    uses: uchiru/platform-gha-workflows/.github/workflows/build-push.yml@master
+    with:
+      tag: ${{ needs.bump.outputs.tag }}
+      registry: sysregistry.runit.cc
+      build-args: version=${{ needs.bump.outputs.tag }}
+    secrets:
+      username: ${{ secrets.REGISTRY_USERNAME }}
+      password: ${{ secrets.REGISTRY_PASSWORD }}
