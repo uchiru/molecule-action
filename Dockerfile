@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.8
 
 ENV PY_COLORS=1 \
     ANSIBLE_FORCE_COLOR=1
@@ -14,5 +14,7 @@ RUN pip install --upgrade pip setuptools
 COPY requirements.txt /tmp/
 
 RUN pip install -r /tmp/requirements.txt
+
+RUN apt install -y python3-apt
 
 CMD cd ${GITHUB_REPOSITORY:-/tmp/$(basename "$PWD")}; molecule ${command:-test}
