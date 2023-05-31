@@ -19,3 +19,10 @@ runs:
   image: docker://sysregistry.runit.cc/molecule-action:v1.4
   env:
     command: ${{ inputs.command }}
+env:
+    REGISTRY: sysregistry.runit.cc
+    REGISTRY_USERNAME:     '${{ secrets.SYS_REGISTRY_USERNAME }}'
+    REGISTRY_PASSWORD: '${{ secrets.SYS_REGISTRY_PASSWORD }}'
+steps:
+  - name: Setup registry credentials
+    run: docker login $REGISTRY --username $REGISTRY_USERNAME --password $REGISTRY_PASSWORD
