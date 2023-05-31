@@ -3,7 +3,7 @@ set -ex
 
 set_vars() {
   app=$(basename $(git rev-parse --show-toplevel))
-  IMAGE=$app:$version
+  IMAGE=uchiru/$app:$version
 }
 
 build_and_push() {
