@@ -16,6 +16,6 @@ inputs:
 
 runs:
   using: docker
-  image: 'Dockerfile'
+  image: docker://uchiru/molecule-action:INFRA-2261-upd-molecule-packages
   env:
     command: ${{ inputs.command }}
