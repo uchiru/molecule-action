@@ -15,6 +15,6 @@ COPY requirements.txt /tmp/
 COPY collections-req.yml /tmp/
 
 RUN pip install -r /tmp/requirements.txt
-RUN ansible-galaxy collection install -r collections-req.yml
+RUN ansible-galaxy collection install -r /tmp/collections-req.yml
 
 CMD cd ${GITHUB_REPOSITORY:-/tmp/$(basename "$PWD")}; molecule ${command:-test}
