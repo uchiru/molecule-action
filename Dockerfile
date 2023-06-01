@@ -14,5 +14,6 @@ RUN pip install --upgrade pip setuptools
 COPY requirements.txt /tmp/
 
 RUN pip install -r /tmp/requirements.txt
+RUN ansible-galaxy collection install -r collections-req.yml
 
 CMD cd ${GITHUB_REPOSITORY:-/tmp/$(basename "$PWD")}; molecule ${command:-test}
