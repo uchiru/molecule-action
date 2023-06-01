@@ -3,11 +3,11 @@ set -ex
 
 set_vars() {
   app=$(basename $(git rev-parse --show-toplevel))
-  IMAGE=sysregistry.runit.cc/$app:$version
+  IMAGE=uchiru/$app:$version
 }
 
 build_and_push() {
-  docker build --build-arg version=$version -t $IMAGE .
+  docker buildx build --platform linux/amd64 -t $IMAGE .
   docker push $IMAGE
 }
 

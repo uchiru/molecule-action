@@ -16,7 +16,7 @@ end
 # check repo & prepare
 if (out = `git status --porcelain`.strip) != ""
   puts out
-  abort "ERROR: ".red + "current repository not commited properly" 
+  abort "ERROR: ".red + "current repository not commited properly"
 end
 sysexec("git pull --rebase && git push")
 
