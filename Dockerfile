@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.10-slim-buster
 
 ENV PY_COLORS=1 \
     ANSIBLE_FORCE_COLOR=1
