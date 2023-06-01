@@ -12,6 +12,7 @@ RUN apt-get update \
 RUN pip install --upgrade pip setuptools
 
 COPY requirements.txt /tmp/
+COPY collections-req.yml /tmp/
 
 RUN pip install -r /tmp/requirements.txt
 RUN ansible-galaxy collection install -r collections-req.yml
