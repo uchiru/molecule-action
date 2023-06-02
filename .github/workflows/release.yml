@@ -16,8 +16,8 @@ jobs:
     uses: uchiru/platform-gha-workflows/.github/workflows/build-push.yml@master
     with:
       tag: ${{ needs.bump.outputs.tag }}
-      registry: sysregistry.runit.cc
+      registry: docker.io
       build-args: version=${{ needs.bump.outputs.tag }}
     secrets:
-      username: ${{ secrets.REGISTRY_USERNAME }}
-      password: ${{ secrets.REGISTRY_PASSWORD }}
+      username: ${{ secrets.DOCKERHUB_LOGIN }}
+      password: ${{ secrets.DOCKERHUB_PASSWORD }}
