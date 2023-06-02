@@ -15,7 +15,7 @@ jobs:
     needs: bump
     uses: uchiru/platform-gha-workflows/.github/workflows/build-push.yml@master
     with:
-      tag: ${{ needs.bump.outputs.tag }}
+      tag: uchiru/${{ needs.bump.outputs.tag }}
       registry: docker.io
       build-args: version=${{ needs.bump.outputs.tag }}
     secrets:
