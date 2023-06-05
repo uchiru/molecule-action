@@ -30,25 +30,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_LOGIN }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Calculate metadata
-        id: meta
-        run: |
-          img_name=${{ inputs.registry }}/${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}
-          bumped_tag=${{ inputs.tag }}
-          if [ ! -z $bumped_tag ]; then
-            img_tag=$bumped_tag
-          elif [ $GITHUB_REF_TYPE = "tag" ]; then
-            img_tag=$GITHUB_REF_NAME
-          else
-            img_tag=$(echo ${GITHUB_REF_NAME} | tr -s '[:punct:]' '-')-${GITHUB_RUN_ATTEMPT}-${GITHUB_SHA:0:8}
-          fi
-          echo "name=$img_name" >> $GITHUB_OUTPUT
-          echo "tag=$img_tag" >> $GITHUB_OUTPUT
-          echo "New image name: $img_name:$img_tag"
-
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: uchiru/molecule-action:${{ steps.meta.outputs.tag }}
+          tags: uchiru/molecule-action:${{ needs.bump.outputs.tag }}
 
