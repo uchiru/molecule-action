@@ -16,6 +16,6 @@ inputs:
 
 runs:
   using: docker
-  image: docker://uchiru/molecule-action:v1.6
+  image: docker://uchiru/molecule-action:v1.9
   env:
     command: ${{ inputs.command }}
