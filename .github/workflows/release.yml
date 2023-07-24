@@ -8,6 +8,8 @@ on:
 jobs:
   bump:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.bump_step.outputs.tag }}
     steps:
     - uses: actions/checkout@v3
       with:
