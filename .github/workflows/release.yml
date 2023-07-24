@@ -7,9 +7,17 @@ on:
 
 jobs:
   bump:
-    uses: uchiru/platform-gha-workflows/.github/workflows/bump.yml@master
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      id: bump_step
+      uses: uchiru/bump-version-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
 
   build-push:
      runs-on: ubuntu-latest
