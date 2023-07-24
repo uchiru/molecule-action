@@ -16,6 +16,6 @@ inputs:
 
 runs:
   using: docker
-  image: docker://uchiru/molecule-action:v1.4
+  image: docker://uchiru/molecule-action:INFRA-2292-fix-workflow
   env:
     command: ${{ inputs.command }}
